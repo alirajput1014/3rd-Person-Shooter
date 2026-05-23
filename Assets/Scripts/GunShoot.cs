@@ -18,6 +18,8 @@ public class GunShoot : MonoBehaviour
 
     public CameraShake camShake;
 
+    public AmmoUi ammoUi;
+
 
     //add layermask to detect everything except player so that ray pass through player and dont detect it
     public LayerMask hitlayers;
@@ -61,6 +63,10 @@ public class GunShoot : MonoBehaviour
         {
             gunaudio.PlayOneShot(gunaudio.clip);
         }
+
+        //update Ammo UI
+        ammoUi.UpdateAmmo(1);
+
 
         //ray gives origin and direction for raycast
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));

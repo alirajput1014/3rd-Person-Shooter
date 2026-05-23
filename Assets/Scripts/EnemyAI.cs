@@ -21,9 +21,14 @@ public class EnemyAI : MonoBehaviour
 
     public Animator anim;
 
+    public AudioSource WalkingSound;
+
+    public AudioSource RunningSound;
+
     void Start()
     {
         agent.SetDestination(patrolPoints[currentPoint].position);
+       
     }
 
     void Update()
@@ -43,11 +48,7 @@ public class EnemyAI : MonoBehaviour
         Physics.Raycast(transform.position + Vector3.up * 1.5f, direcToPlayer, out hit, detectDistance);
         Debug.DrawRay(transform.position + Vector3.up * 1.5f, direcToPlayer * detectDistance, Color.red);
 
-        Debug.Log(distance);
-        Debug.Log(dot);
-        Debug.Log(hit.transform.name);
-
-        if (hit.transform.CompareTag("Player"))
+        if (hit.transform != null&&hit.transform.CompareTag("Player"))
         {
             cansee = true;
         }
@@ -64,21 +65,42 @@ public class EnemyAI : MonoBehaviour
         {
             chasing = false;
             anim.SetBool("chase", false);
+            agent.SetDestination(patrolPoints[currentPoint].position);
         }
 
 
         if (chasing)
         {
             agent.SetDestination(player.position);
+            agent.speed = 3.5f;
+            if (WalkingSound.isPlaying)
+            {
+                WalkingSound.Stop();
+            }
+            if (!RunningSound.isPlaying)
+            {
+                RunningSound.Play();
+            }
+
         }
         else
         {
+            agent.speed = 2.3f;
             Patrol();
+        }
+        if (agent.velocity.magnitude<0.1f)
+        {
+            RunningSound.Stop();
         }
     }
 
     void Patrol()
     {
+        //walk sound
+        if (!WalkingSound.isPlaying)
+        {
+            WalkingSound.Play();
+        }
         if (agent.remainingDistance < 0.5f)
         {
             currentPoint++;
@@ -89,6 +111,8 @@ public class EnemyAI : MonoBehaviour
             }
 
             agent.SetDestination(patrolPoints[currentPoint].position);
+
+           
         }
     }
 }

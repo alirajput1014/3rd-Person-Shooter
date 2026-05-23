@@ -11,6 +11,10 @@ public class EnemyAttack : MonoBehaviour
     public Animator anim;
     public float shootWait;
     bool ishooting = false;
+    public GameObject FirePoint;
+    public GameObject FlashPrefab;
+    public AudioSource GunSound;
+    
 
     void Update()
     {
@@ -59,6 +63,16 @@ public class EnemyAttack : MonoBehaviour
 
     IEnumerator Attack()
     {
+        //gun flash
+        GameObject f = Instantiate(FlashPrefab, FirePoint.transform.position, FirePoint.transform.rotation);
+        Destroy(f,0.1f);
+
+        //gun sound
+        if (GunSound != null)
+        {
+            GunSound.PlayOneShot(GunSound.clip);
+        }
+
         ishooting = true;
         PlayerHealth ph = player.GetComponent<PlayerHealth>();
         if (ph != null)

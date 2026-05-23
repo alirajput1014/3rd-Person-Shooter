@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -13,18 +14,28 @@ public class PlayerHealth : MonoBehaviour
 
     public GameObject Blood;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public Image FillHealth;
+   // public Image DamageFlash;
+
     void Start()
     {
         currenthealth = maxhealth;
     }
     public void TakeDamage(float damage)
     {
+        //Hit Animation
         anim.SetTrigger("Hit");
+
+        //Blood Effect
         Instantiate(Blood, transform.position+Vector3.up*1.2f,Quaternion.identity);
         Destroy(Blood,1f);
+
+        //Update Health
         currenthealth = currenthealth - damage;
         Debug.Log(" Hit! Remaining HP" + currenthealth);
+
+        //UI Bar
+        FillHealth.fillAmount = currenthealth / maxhealth;
 
         if (currenthealth <= 0)
         {

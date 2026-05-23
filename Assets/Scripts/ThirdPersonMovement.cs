@@ -16,6 +16,8 @@ public class ThirdPersonMovement : MonoBehaviour
     public AudioSource footstepAudio;
     float footstepTimer = 0f;
 
+    public AudioSource AimSound;
+
     void Update()
     {
         //aiming
@@ -23,12 +25,19 @@ public class ThirdPersonMovement : MonoBehaviour
         {
             isaiming = true;
             footstepAudio.Stop();
+          
         }
         else
         {
             isaiming = false;
         }
         anim.SetBool("isaiming", isaiming);
+
+        //play aim sound once
+        if (Input.GetMouseButtonDown(1))
+        {
+            AimSound.PlayOneShot(AimSound.clip);
+        }
         //shoot
         if (Input.GetButton("Fire1"))
         {

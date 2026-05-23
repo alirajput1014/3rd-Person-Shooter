@@ -6,7 +6,7 @@ public class CameraFollow : MonoBehaviour
     public float height = 1.5f;
     public float distance = 3f;
     public float mouseSensitivity = 200f;
-    Vector2 pitchlimit = new Vector2(-30f, 60f);
+    Vector2 pitchlimit = new Vector2(-30f,60f);
 
     float yaw; // left right
     float pitch; //up down
