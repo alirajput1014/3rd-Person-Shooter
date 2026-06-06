@@ -1,11 +1,11 @@
 # 3rd-Person Shooter (TPS) Game Foundation
 
-A robust, modular Third-Person Shooter (TPS) foundational project built in Unity. This project implements core mechanics required for a modern 3rd-person action game, including physics-based movement, dynamic camera systems, weapon mechanics, basic enemy AI, and UI integration.
+A modular Third-Person Shooter (TPS) foundational project built in Unity. This project implements core mechanics required for a modern 3rd-person action game, including physics-based movement, dynamic camera systems, weapon mechanics, basic enemy AI, and UI integration.
 
 ## 🚀 Key Features
 
 * **Responsive 3rd-Person Movement:** Smooth character movement with rotation aligned to the camera's perspective.
-* **Dynamic Camera System:** Advanced camera following behavior with integrated screen-shake feedback for impactful combat.
+* **Dynamic Camera System:** Advanced camera following behavior 
 * **Complete Gunplay Mechanics:** Raycast-based shooting system with real-time ammunition tracking and reloading.
 * **Modular Health System:** Reusable health scripts for managing damage, death states, and specific player health behaviors.
 * **State-Driven Enemy AI:** Basic patrol, chase, and attack behaviors using Unity's NavMesh system.
