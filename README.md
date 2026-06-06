@@ -37,11 +37,14 @@ The core logic is divided into modular C# scripts located in the `Assets/Scripts
 
 ### 📊 User Interface (UI)
 * **`AmmoUi.cs`**: Connects directly with the weapon system to display current magazine counts and total reserve ammo on the player's screen.
+  
+## 🎮 Controls
 
-### 🎮 Controls
-Move: W A S D / Arrow Keys
-Aim/Look: Mouse Movement
-Shoot: Left Mouse Button (LMB)
+Use the following default input configurations to play and test the game mechanics:
+
+* **Movement:** Use `W`, `A`, `S`, `D` or the **Arrow Keys** to move the player.
+* **Aim / Look Around:** Move your **Mouse** to rotate the camera and aim.
+* **Shoot:** Click the **Left Mouse Button (LMB)** to fire the weapon.
 
 ---
 
