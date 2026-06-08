@@ -2,6 +2,14 @@
 
 A modular Third-Person Shooter (TPS) foundational project built in Unity. This project implements core mechanics required for a modern 3rd-person action game, including physics-based movement, dynamic camera systems, weapon mechanics, basic enemy AI, and UI integration.
 
+## 🎬 Gameplay Demo
+
+[![Watch Gameplay Demo](https://drive.google.com/thumbnail?id=1g25jCOmoN6Qgely50IWvxH-myrY9RdKc&sz=w800)](https://drive.google.com/file/d/1g25jCOmoN6Qgely50IWvxH-myrY9RdKc/view?usp=sharing)
+
+> *Click the thumbnail above to watch the full gameplay demo.*
+
+---
+
 ## 🚀 Key Features
 
 * **Responsive 3rd-Person Movement:** Smooth character movement with rotation aligned to the camera's perspective.
