@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class Health : MonoBehaviour
@@ -8,6 +8,9 @@ public class Health : MonoBehaviour
     public Animator anim;
     bool isdead=false;
     private EnemyAI ai;
+    public SniperEnemy Sniperenemy;
+    public CheckPointEnemy CheckPointEnemy;
+    public FlankerEnemy flankerEnemy;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,12 +30,38 @@ public class Health : MonoBehaviour
     }
     void Die()
     {
-        Debug.Log("dead");
-        if(isdead) return;
-        isdead= true;
+        if (isdead) return;
+        isdead = true;
+
         anim.SetTrigger("Death");
+
+        // EnemyAI + NavMesh
         if (ai != null) ai.enabled = false;
-        GetComponent<NavMeshAgent>().enabled = false;
-        Destroy(gameObject,5f);
+
+        NavMeshAgent nav = GetComponent<NavMeshAgent>();
+        if (nav != null) nav.enabled = false;
+
+        // Sniper
+        if (Sniperenemy != null)
+        {
+            Sniperenemy.laser.enabled = false;
+            Sniperenemy.enabled = false;     
+        }
+
+        // CheckPoint
+        if (CheckPointEnemy != null)
+        {
+            CheckPointEnemy.StopAllCoroutines();
+            CheckPointEnemy.enabled = false;
+        }
+
+        // Flanker
+        if (flankerEnemy != null)
+        {
+            flankerEnemy.StopAllCoroutines();
+            flankerEnemy.enabled = false;
+        }
+
+        Destroy(gameObject, 5f);
     }
 }

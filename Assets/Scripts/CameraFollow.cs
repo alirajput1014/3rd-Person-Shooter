@@ -20,9 +20,11 @@ public class CameraFollow : MonoBehaviour
     public float normalSideOffset = 0.5f;
     public float aimSideOffset = 0.9f;
 
+    public CameraShake shakeScript;
+
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+       // Cursor.lockState = CursorLockMode.Locked;
     }
 
     void LateUpdate()
@@ -61,6 +63,10 @@ public class CameraFollow : MonoBehaviour
                 targetFOV = aimFOV;
             }
             cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, targetFOV, Time.deltaTime * 10);
+        }
+        if (shakeScript != null)
+        {
+            transform.position += shakeScript.shakeOffset;
         }
     }
 }

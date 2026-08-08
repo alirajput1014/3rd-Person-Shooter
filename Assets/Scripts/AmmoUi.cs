@@ -1,52 +1,52 @@
 using TMPro;
-using UnityEngine.UI;
 using UnityEngine;
 
 public class AmmoUi : MonoBehaviour
 {
-    public TextMeshProUGUI TotalAmmo;
-    public TextMeshProUGUI magzine;
-    public int ta=120;
-    public int m=30;
-    private bool flag=false;
+    public TextMeshProUGUI totalAmmoText;
+    public TextMeshProUGUI magAmmoText;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public int totalAmmo = 120;
+    public int maxTotalAmmo = 210;
+    public int magAmmo = 30;
+    public int magSize = 30;
+
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void UpdateAmmo(int ua)
-    {
-        m = m - ua;
-        if (m < 1)
-        {
-            ta = ta-30;
-            if (flag == false)
-            {
-                m = 30;
-            }
-            if (ta == 0)
-            {
-                flag=true;
-            }
-           
-        }
-        if(ta==0 && m == 0)
-        {
-            Debug.Log("ammos are finished");
-        
-        }
         UpdateUI();
     }
+
+    public void ShootBullet()
+    {
+        if (magAmmo > 0)
+        {
+            magAmmo--;
+            UpdateUI();
+        }
+    }
+
+    public void Reload()
+    {
+        if (totalAmmo <= 0)
+            return;
+
+        magAmmo = 30;
+        totalAmmo -= 30;
+
+        if (totalAmmo < 0)
+            totalAmmo = 0;
+
+        UpdateUI();
+    }
+    public void AddAmmo(int amount)
+    {
+        totalAmmo =Mathf.Min(totalAmmo + amount, maxTotalAmmo);
+        UpdateUI();
+    }
+
     void UpdateUI()
     {
-        TotalAmmo.text=ta.ToString();
-        magzine.text=m.ToString();
+        totalAmmoText.text = totalAmmo.ToString();
+        magAmmoText.text = magAmmo.ToString();
     }
 }

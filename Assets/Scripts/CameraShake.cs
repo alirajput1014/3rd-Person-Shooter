@@ -1,30 +1,27 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 public class CameraShake : MonoBehaviour
 {
-    Vector3 startpos;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public Vector3 shakeOffset { get; private set; }
+
+    public void shake(float duration, float magnitude)
     {
-        startpos = transform.localPosition;
-    }
-    public void shake(float amount,float time)
-    {
-        Debug.Log("Shake called!");
         StopAllCoroutines();
-        StartCoroutine(Shakeroutine(amount, time));
+        StartCoroutine(DoShake(duration, magnitude));
     }
-    IEnumerator Shakeroutine(float amount,float time)
+
+    IEnumerator DoShake(float duration, float magnitude)
     {
-        float t = 0;
-        while (t < time)
+        float elapsed = 0f;
+        while (elapsed < duration)
         {
-            transform.localPosition = startpos+Random.insideUnitSphere * amount;
-            t += Time.deltaTime;
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+            shakeOffset = new Vector3(x, y, 0f);
+            elapsed += Time.deltaTime;
             yield return null;
         }
-        transform.localPosition = startpos;
-
+        shakeOffset = Vector3.zero;
     }
 }
